@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video To Gif Conversion | Nikesh</title>
+</head>
+
+<style type="text/css">
+	.video-wrapper{
+		width: 600px;
+		height: 300px;
+		background:gray;
+		float: left;
+	}
+
+	#img-to-show{
+		width: 400px;
+		height: 200px;
+		background:blue;
+		float: right;
+		position: relative;
+	}
+
+	#image-text{
+		position: absolute;
+		font-size: 14px;
+		top: 200px;
+		left: 180px;
+	}
+
+	#canvas-wrapper{
+		width: 400px;
+		height: 200px;
+		background:red;
+		position: absolute;
+		top: 238px;
+		left: 903px;
+	}
+
+	#paragraph-wrapper{
+		width: 600px;
+		height: 800px;
+		margin-top:130px;
+		background:green;
+	}
+</style>
+<body>
+<div class="video-wrapper">
+	<video id = "video" height="300" width="600" controls autoplay >
+		<source src="video/video1.webm" type="video/webm">
+	</video>
+
+	<div id="paragraph-wrapper">
+
+	</div>
+</div>
+
+<div id="img-to-show">
+	<img id="image"/>
+	<span id="image-text">Image</span>
+</div>
+
+<div id="canvas-wrapper">
+
+</div>
+
+
+
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById('canvas-wrapper');
+	var showImg = document.getElementById('img-to-show');
+	var pWrapper = document.getElementById('paragraph-wrapper');
+	var image = document.getElementById('image');
+	var video = document.getElementById('video');
+	var videoLength = Math.floor(video.duration * 1000);
+	var c = document.createElement('canvas');
+	var i = 0;
+	c.setAttribute("height", 200);
+	c.setAttribute("width", 400);
+	canvas.appendChild(c);
+
+	var imgArray = [];
+
+	var cxt = c.getContext('2d');
+	cxt.scale(1/4, 1/4);
+
+
+	this.takeScreenShots = function(){
+		cxt.drawImage(video, 0, 0);
+		var m = canvasToImage(c);
+		imgArray.push(m);
+		image.src = m.src;
+
+		if (i > videoLength){
+			stopScreenShots();
+		}
+
+		i +=700;
+		
+	}
+
+
+	stopScreenShots = function(){
+		clearInterval(loop);
+		// console.log(imgArray);
+		doRest();
+	}
+
+	function canvasToImage(canvas){
+		var image = new Image();
+		image.src = c.toDataURL("image/png");
+		return image;
+	}
+
+	var loop = setInterval(this.takeScreenShots, 700);
+	
+	function doRest(){
+		var HexArray =[];
+		for (var i = 0; i < imgArray.length; i++){
+			HexArray[i] = convertToHex(imgArray[i]);
+		}
+		
+		for (var i = 0; i < HexArray.length; i++){
+			var p = document.createElement('p');
+			p.setAttribute('id', 'p' + i);
+			pWrapper.appendChild(p);
+		}
+
+		for (var i = 0; i < HexArray.length; i++){
+			document.getElementById('p' + i).innerHTML = HexArray[i];
+		}
+
+		// document.getElementById('p1').innerHTML = "Hello";
+		console.log("DONE");
+	}
+
+	function convertToHex(img){
+		var imgSrc = img.src;
+		var imgBase64 = "";
+		var imgAscii;
+		var HEX = "";
+		for (var i = 22; i < imgSrc.length; i++){
+			imgBase64 += imgSrc[i];
+		}
+		imgAscii = atob(imgBase64);
+		// console.log(imgAscii);
+
+		for (var i=0; i < imgAscii.length; i++){
+			var _hex = imgAscii.charCodeAt(i).toString(16);
+			HEX += (_hex.length == 2 ? _hex : '0'+ _hex);
+		}
+
+		return HEX;
+	}
+
+}
+
+</script>
+</body>
+</html>
