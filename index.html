@@ -109,6 +109,7 @@ window.onload = function(){
 	function canvasToImage(canvas){
 		var image = new Image();
 		image.src = c.toDataURL("image/png");
+		console.log(image.src);
 		return image;
 	}
 
@@ -148,8 +149,9 @@ window.onload = function(){
 		for (var i=0; i < imgAscii.length; i++){
 			var _hex = imgAscii.charCodeAt(i).toString(16);
 			HEX += (_hex.length == 2 ? _hex : '0'+ _hex);
+			// HEX = HEX.toUpperCase();
 		}
-
+			HEX = HEX.toUpperCase();
 		return HEX;
 	}
 
