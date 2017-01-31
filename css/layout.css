@@ -1,0 +1,28 @@
+
+.video-wrapper{
+	width: 352px;
+	height: 288px;
+	background:gray;
+	float: left;
+	border: 2px solid black;
+}
+
+.start-button{
+	position: absolute;
+	border: none;
+	cursor: pointer;
+	color: green;
+	font-size: 24px;
+	left: 380px;
+	top: 270px;
+}
+
+.stop-button{
+	position: absolute;
+	border: none;
+	cursor: pointer;
+	color: red;
+	font-size: 24px;
+	left: 465px;
+	top: 270px;
+}
