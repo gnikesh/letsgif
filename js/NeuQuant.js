@@ -416,7 +416,6 @@ function NeuQuant() {
     }
 
     return (best);
-
   }
 
   this.process = function () {
