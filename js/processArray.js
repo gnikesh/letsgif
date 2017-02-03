@@ -24,13 +24,12 @@ function ProcessArray(data) {
 	quantizeRGB = function() {
 		var rgbArray = imgRGBArray[0];
 		this.neuQuant = new NeuQuant();
-		this.neuQuant.NeuQuantConstructor(rgbArray, 300 * 300 * 3, 10);
+		this.neuQuant.NeuQuantConstructor(rgbArray, 200 * 200 * 3, 10);
 		palette = this.neuQuant.process();
 	}
 
 
 	mapping = function(array){
-		console.log("MAPPING ARRAY: ", array);
 		var mappedArray = new Array(256);
 		for (var i = 0, j = 0; i < array.length - 2; i += 3, j++) {
 			mappedArray[j] = neuQuant.map(array[i], array[i + 1], array[i + 2]);
@@ -41,9 +40,10 @@ function ProcessArray(data) {
 
 	createGif = function() {
 		console.log(imgRGBArray[0]);
-		var newGif = new GifWriter(buf, 300, 300, {palette: rgbArrayToHex(palette), loop: 10});
-		for (var i = 0; i < IMAGE_NUMBER; i++) {
-			newGif.addFrame(0, 0, 300, 300, mapping(imgRGBArray[i]), {delay : 10});
+		var newGif = new GifWriter(buf, 200, 200, {loop: 0});
+		newGif.addFrame(0, 0, 200, 200, mapping(imgRGBArray[0]), {palette: rgbArrayToHex(palette)});
+		for (var i = 1; i < IMAGE_NUMBER; i++) {
+			newGif.addFrame(0, 0, 200, 200, mapping(imgRGBArray[i]), {palette: rgbArrayToHex(palette), delay : 10});
 		}
 		
 		return buf.slice(0, newGif.end());
@@ -78,11 +78,29 @@ function ProcessArray(data) {
 	this.process = function() {
 		removeAlphaChannel();
 		quantizeRGB();
-		// mapping();
 		var gif = createGif();
 		var abc = document.getElementById('hex-string');
 		abc.innerHTML = rgbToHexString(gif);
-		console.log(rgbToHexString(gif));
+
+		var uint8array = new Uint8Array(gif);
+
+		console.log("Uint * Array: ", uint8array);
+
+		function Uint8ToString(u8a){
+		  var CHUNK_SZ = 0x8000;
+		  var c = [];
+		  for (var i=0; i < u8a.length; i+=CHUNK_SZ) {
+		    c.push(String.fromCharCode.apply(null, u8a.subarray(i, i+CHUNK_SZ)));
+		  }
+		  return c.join("");
+		}
+
+		// Usage
+		var base64 = "data:image/png;base64, " + btoa(Uint8ToString(uint8array));
+		
+		console.log("BASE 64: ", base64);
+		document.getElementById('gif-image').setAttribute('src', base64);
+		console.log(base64);
 	}
 
 

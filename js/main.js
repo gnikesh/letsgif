@@ -4,12 +4,12 @@ window.onload = function(){
 	var i = 0;
 	var canvas = document.createElement('canvas');
 	var canvasDiv = document.getElementById('canvas-div');
-	canvas.setAttribute('height', 340);
-	canvas.setAttribute('width', 340);
+	canvas.setAttribute('height', 200);
+	canvas.setAttribute('width', 200);
 	canvasDiv.appendChild(canvas);
 	var cxt = canvas.getContext('2d');
 
-	var promise = navigator.mediaDevices.getUserMedia({video: {width: 400, height:  400}}).then(function(mediaStream) {
+	var promise = navigator.mediaDevices.getUserMedia({video: {width: 200, height:  200}}).then(function(mediaStream) {
 		this.video = document.querySelector('video');
 		this.video.srcObject = mediaStream;
 		video.onloadmetadata = function(e){
@@ -21,7 +21,7 @@ window.onload = function(){
 
 	this.captureFrames = function() {
 		cxt.drawImage(this.video, 0, 0);
-		pngImgArray.push(cxt.getImageData(20, 20, 300, 300));
+		pngImgArray.push(cxt.getImageData(0, 0, 200, 200));
 		i++;
 		if (i >= 30){
 			clearInterval(loop);
@@ -31,6 +31,8 @@ window.onload = function(){
 
 	this.takeVideo = function() {
 		if (this.video){
+			i = 0;
+			pngImgArray = [];
 			this.loop = setInterval(this.captureFrames, 100);
 		} else {
 			console.log("ERROR! No Video");

@@ -13,13 +13,18 @@
 
 <body>
 <div class="video-wrapper">
-	<video controls autoplay></video>
+	<video controls autoplay width="200" height="200"></video>
 	<button class="start-button" onclick="takeVideo()">Start</button>
 </div>
 
 <div id="canvas-div"> </div>
 
 <canvas id='trail-canvas' width="300" height="300"> </canvas>
+
+<div class="gif-image-wrapper">
+	<h3>Your GIF</h3>
+	<img id="gif-image" src="images/abc.png"/>
+</div>
 
 <p id="hex-string" style="position: absolute; top: 100px left: 10px;"></p>
 </body>
