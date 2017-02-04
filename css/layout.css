@@ -1,34 +1,88 @@
+.clrfix:before, .clrfix:after {  content: "";  
+display: table; } 
+
+.clrfix:after {  
+clear: both; } 
+
+.clrfix {  zoom: 1; /* IE6&7 */ }
+
+
+body{
+	background: #E6EAED;
+	font-family: 'Kaushan Script', cursive;
+	color: #4e4f54;
+}
+
+* {
+	/*outline: 1px solid black;*/
+}
+.main-wrapper{
+	width: 100%;
+	height: 100%;
+}
+
+.details-text{
+	width: 100%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.webcam-text{
+	width: 100%;
+}
+
+.web-cam-video{
+	display: none;
+	float: left;
+	width: 33%;
+	height: 100%;
+	text-align: center;
+}
 
 .video-wrapper{
 	width: 200px;
 	height: 200px;
 	background:gray;
 	float: left;
+	margin: 0 25%;
 	border: 2px solid black;
+	border-radius: 5px;
+	/*float: left;*/
 }
 
 .start-button{
-	position: absolute;
 	border: none;
 	cursor: pointer;
-	color: green;
-	font-size: 24px;
-	left: 380px;
-	top: 270px;
+	color: white;
+	font-size: 20px;
+	background: #279ed9;
+	margin-top: 10px;
+	border-radius: 5px;
+	padding: 5px 10px 5px 10px;
 }
 
-.stop-button{
-	position: absolute;
-	border: none;
-	cursor: pointer;
-	color: red;
-	font-size: 24px;
-	left: 465px;
-	top: 270px;
+p{
+	font-size: 18px;
 }
 
 .gif-image-wrapper{
-	position: absolute;
-	top: 10px;
-	left: 800px;
+	display: none;
+	float: left;
+	width: 33%;
+	text-align: center; 	
+}
+
+.gif-img-div{
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	background: gray;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.footer{
+	padding-top: 150px;
+	text-align: center;
 }

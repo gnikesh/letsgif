@@ -1,0 +1,43 @@
+@media only screen and (max-width: 800px){
+	.details-text{
+		width: 100% !important;
+		padding-bottom: 50px;
+
+	}
+
+	.web-cam-video{
+		width: 50%;
+	}
+}
+
+@media only screen and (max-width: 620px){
+	.video-wrapper{
+		margin: 0;
+	}
+
+	.web-cam-video{
+		text-align: left;
+	}
+}
+
+@media only screen and (max-width: 472px){
+	.web-cam-video{
+		width: 100%;
+	}
+
+	.gif-image-wrapper{
+		width: 100%;
+	}
+
+	.web-cam-video{
+		text-align: center;
+	}
+
+	.video-wrapper{
+		margin: 0 25%;
+	}
+
+	.gif-image-wrapper{
+		padding-top: 100px;
+	}
+}

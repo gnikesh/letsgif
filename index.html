@@ -3,29 +3,56 @@
 <head>
 	<title>Video To Gif Conversion | Nikesh</title>
 	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
-	<script type="text/javascript" src="js/processArray.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet"> 
+	<link href="css/media.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/processArray.js"></script>
 	<script type="text/javascript" src="js/NeuQuant.js"></script>
 	<script type="text/javascript" src="js/omggif.js"></script>
-	<!-- <script type="text/javascript" src="js/worker.js"></script> -->
+	<script type="text/javascript" src="js/worker.js"></script>
+
 </head>
 
 
 <body>
-<div class="video-wrapper">
-	<video controls autoplay width="200" height="200"></video>
-	<button class="start-button" onclick="takeVideo()">Start</button>
+<div class="main-wrapper clrfix">
+
+	<div class="details-text">
+		<h1>Lets GIF...</h1>
+		<p>Turn your videos to amazing animated gif image. Let's begin...</p>
+		<p>UPLOAD your video to change it to gif. OR use WEBCAM to create gif instantly.</p>
+		<br>
+		<div id = "uload-or-webcam-option">
+			<input type="file" name="video-upload" id="upload-video"/>
+			<p>Upload Your Video</p>
+			<p>OR</p>
+			<button class="start-button" onclick="startWebcam()">Use WebCam</button>
+		</div>
+	</div>
+
+	<div class="web-cam-video">
+		<div class="webcam-text">
+			<p>Webcam Video</p>
+		</div>
+		<div class="video-wrapper">
+			<video id="webcam-video" controls autoplay width="200" height="200"></video>
+			<div style="width: 100%">
+				<button id="webcam-start" class="start-button" onclick="takeVideo()">Start</button>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="canvas-div" style="display: none;"> </div>
+
+	<div class="gif-image-wrapper">
+		<p>Your GIF here</p>
+		<div class="gif-img-div"> <img id="gif-image" src=""/> </div>
+	</div>
 </div>
 
-<div id="canvas-div"> </div>
-
-<canvas id='trail-canvas' width="300" height="300"> </canvas>
-
-<div class="gif-image-wrapper">
-	<h3>Your GIF</h3>
-	<img id="gif-image" src="images/abc.png"/>
+<div class="footer">
+Nikesh Gyawali 2017
 </div>
-
-<p id="hex-string" style="position: absolute; top: 100px left: 10px;"></p>
 </body>
 </html>
