@@ -1,4 +1,4 @@
-function ProcessArray(data) {
+function ProcessArray (data) {
 	var imgRawArray = data; // PNG complete Information array
 	var IMAGE_NUMBER = imgRawArray.length;
 	var imgRGBA_Array = []; // PNG image data with Alpha channel
@@ -9,7 +9,7 @@ function ProcessArray(data) {
 	var GIF_WIDTH = 200; // width of output gif image
 	var GIF_HEIGHT = 150; // height of output gif image
 
-	removeAlphaChannel = function() {
+	removeAlphaChannel = function () {
 		for (var i = 0; i < imgRawArray.length; i++) {
 			imgRGBA_Array.push(imgRawArray[i].data);
 		}
@@ -23,7 +23,7 @@ function ProcessArray(data) {
 		}
 	}
 
-	quantizeRGB = function() {
+	quantizeRGB = function () {
 		var rgbArray = imgRGBArray[0];
 		this.neuQuant = new NeuQuant();
 		this.neuQuant.NeuQuantConstructor(rgbArray, GIF_WIDTH * GIF_HEIGHT * 3, 10);
@@ -31,8 +31,9 @@ function ProcessArray(data) {
 	}
 
 
-	mapping = function(array) {
+	mapping = function (array) {
 		var mappedArray = new Array();
+		
 		for (var i = 0, j = 0; i < array.length - 2; i += 3, j++) {
 			mappedArray[j] = neuQuant.map(array[i], array[i + 1], array[i + 2]);
 		}
@@ -40,7 +41,7 @@ function ProcessArray(data) {
 		return mappedArray;
 	}
 
-	createGif = function() {
+	createGif = function () {
 		var newGif = new GifWriter(buf, GIF_WIDTH, GIF_HEIGHT, {loop: 0});
 		newGif.addFrame(0, 0, GIF_WIDTH, GIF_HEIGHT, mapping(imgRGBArray[0]), {palette: rgbArrayToHex(palette)});
 		for (var i = 1; i < IMAGE_NUMBER; i++) {
@@ -50,8 +51,9 @@ function ProcessArray(data) {
 		return buf.slice(0, newGif.end());
 	}
 	
-	rgbArrayToHex = function(array) {
+	rgbArrayToHex = function (array) {
 		var hexArray = [];
+
 		for (var i = 0; i < array.length - 2; i += 3) {
 			r = array[i].toString(16);
 			g = array[i + 1].toString(16);
@@ -65,34 +67,23 @@ function ProcessArray(data) {
 		return hexArray
 	}
 
-	// rgbToHexString = function(array) {
-	// 	var hexString = '';
-	// 	for (var i = 0; i < array.length; i ++) {
-	// 		var _hex =  array[i].toString(16);
-	// 		_hex = _hex.length < 2 ? '0' + _hex : _hex;
-	// 		hexString += _hex;
-	// 	}
-
-	// 	return hexString;
-	// }
-
 	Uint8ToString = function (u8a) {
 	  var CHUNK_SZ = 0x8000;
 	  var c = [];
 	  for (var i=0; i < u8a.length; i+=CHUNK_SZ) {
 	    c.push(String.fromCharCode.apply(null, u8a.subarray(i, i+CHUNK_SZ)));
 	  }
-	  return c.join("");
+	  return c.join('');
 	}
 
-	this.process = function() {
+	this.process = function () {
 		removeAlphaChannel();
 		quantizeRGB();
 		this.gif = createGif();
 	}
 
-	this.getBase64DataURL = function() {
+	this.getBase64DataURL = function () {
 		var uint8array = new Uint8Array(this.gif);
-		return "data:image/png;base64, " + btoa(Uint8ToString(uint8array));
+		return 'data:image/png;base64, ' + btoa(Uint8ToString(uint8array));
 	}
 }

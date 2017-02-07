@@ -21,6 +21,7 @@ body{
 	/*outline: 1px solid black;*/
 }
 .main-wrapper{
+	position: relative;
 	width: 100%;
 	height: 100%;
 }
@@ -30,6 +31,7 @@ body{
 	height: 100%;
 	float: left;
 	text-align: center;
+	/*background: blue;*/
 }
 
 
@@ -50,7 +52,7 @@ body{
 
 .video-wrapper{
 	width: 200px;
-	height: 200px;
+	height: 150px;
 	background:gray;
 	float: left;
 	margin: 0 25%;
@@ -117,7 +119,7 @@ p{
 	width: 25%;
 	/*height: 100%;*/
 	background: #c4cdd3;
-	border-bottom: 1px solid gray;
+	border-bottom: 5px solid gray;
 	text-align: center;
 	padding: 20px;
 	border-radius: 5px 5px 10px 10px;

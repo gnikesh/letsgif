@@ -22,8 +22,8 @@
 	</div>
 
 	<div class="details-text">
-		<h1>Lets GIF...</h1>
-		<p>Turn your videos to amazing animated gif image. Let's begin...</p>
+		<h1 style="color: #279CD7;"><a href="javascript:void(0)" style="text-decoration: none; color: inherit;">LetsGIF</a></h1>
+		<p>Turn your videos to amazing animated gif images. Let's begin...</p>
 		<p>UPLOAD your video to change it to gif. OR use WEBCAM to create gif instantly.</p>
 		<br>
 		<div id = "uload-or-webcam-option">
@@ -36,23 +36,18 @@
 
 	<div class="web-cam-video">
 		<div class="webcam-text">
-			<p>Webcam Video</p>
+			<p id="video-text">Webcam Video</p>
 		</div>
 		<div class="video-wrapper">
-				<video id="webcam-video" autoplay muted width="200px" height="200px"></video>
-				
+				<video id="show-video" autoplay muted width="200px" height="150px"></video>
 		</div>
 		<button id="webcam-start" class="start-button" onclick="takeVideo()">Start</button>
-		<p> Press Start To start capturing video. Capturing will automaticall stop after 3 seconds...</p>
+		<p id="hint-text"> Press Start To start capturing video. Capturing will automaticall stop after 3 seconds...</p>
 	</div>
 	
 	
 	<div id="canvas-div" style="display: none;">
-		<canvas id="img-canvas" style="background: red; width: 200px; height: 200px"></canvas>
-	</div>
-
-	<div class="upload-video-wrapper" style="display: none;">
-		<video autoplay muted id="uploaded-video"></video>
+		<canvas id="img-canvas" style="background: red; width: 200px; height: 150px"></canvas>
 	</div>
 
 	<div class="gif-image-wrapper">
