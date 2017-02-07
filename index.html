@@ -3,13 +3,13 @@
 <head>
 	<title>Video To Gif Conversion | Nikesh</title>
 	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
-	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet"> 
 	<link href="css/media.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/processArray.js"></script>
 	<script type="text/javascript" src="js/NeuQuant.js"></script>
 	<script type="text/javascript" src="js/omggif.js"></script>
 	<script type="text/javascript" src="js/worker.js"></script>
+	<script type="text/javascript" src="js/fileUpload.js"></script>
 
 </head>
 
@@ -17,14 +17,18 @@
 <body>
 <div class="main-wrapper clrfix">
 
+	<div class="please-wait-wrapper">
+		Please Wait...
+	</div>
+
 	<div class="details-text">
 		<h1>Lets GIF...</h1>
 		<p>Turn your videos to amazing animated gif image. Let's begin...</p>
 		<p>UPLOAD your video to change it to gif. OR use WEBCAM to create gif instantly.</p>
 		<br>
 		<div id = "uload-or-webcam-option">
-			<input type="file" name="video-upload" id="upload-video"/>
-			<p>Upload Your Video</p>
+			<input type="file" name="video-upload" style="display: none;" id="upload-video" onchange="handleFileUpload(this.files)" />
+			<p><a href="javascript:void(0)" id="upload-text">Upload Your Video</a><br><span style="font-size: 12px; font-family: OpenSans">&nbsp;(Max-size: 100 MB)</span></p>
 			<p>OR</p>
 			<button class="start-button" onclick="startWebcam()">Use WebCam</button>
 		</div>
@@ -35,20 +39,29 @@
 			<p>Webcam Video</p>
 		</div>
 		<div class="video-wrapper">
-			<video id="webcam-video" controls autoplay width="200" height="200"></video>
-			<div style="width: 100%">
-				<button id="webcam-start" class="start-button" onclick="takeVideo()">Start</button>
-			</div>
+				<video id="webcam-video" autoplay muted width="200px" height="200px"></video>
+				
 		</div>
+		<button id="webcam-start" class="start-button" onclick="takeVideo()">Start</button>
+		<p> Press Start To start capturing video. Capturing will automaticall stop after 3 seconds...</p>
 	</div>
 	
 	
-	<div id="canvas-div" style="display: none;"> </div>
+	<div id="canvas-div" style="display: none;">
+		<canvas id="img-canvas" style="background: red; width: 200px; height: 200px"></canvas>
+	</div>
+
+	<div class="upload-video-wrapper" style="display: none;">
+		<video autoplay muted id="uploaded-video"></video>
+	</div>
 
 	<div class="gif-image-wrapper">
 		<p>Your GIF here</p>
 		<div class="gif-img-div"> <img id="gif-image" src=""/> </div>
+		<span style="font-size: 14px;">Right Click on Image to Save</span>
+		<button class="start-button" id="refresh-page-button" onclick="refreshPage()">Start Again</button>
 	</div>
+
 </div>
 
 <div class="footer">

@@ -6,10 +6,14 @@ clear: both; }
 
 .clrfix {  zoom: 1; /* IE6&7 */ }
 
+@font-face{
+	font-family: KaushanScript;
+	src:url('../fonts/KaushanScript-Regular.ttf');
+}
 
 body{
 	background: #E6EAED;
-	font-family: 'Kaushan Script', cursive;
+	font-family: KaushanScript, cursive;
 	color: #4e4f54;
 }
 
@@ -28,6 +32,10 @@ body{
 	text-align: center;
 }
 
+
+#upload-text{
+	color: #279ed9;
+}
 .webcam-text{
 	width: 100%;
 }
@@ -55,15 +63,28 @@ body{
 	border: none;
 	cursor: pointer;
 	color: white;
-	font-size: 20px;
+	font-size: 18px;
 	background: #279ed9;
 	margin-top: 10px;
 	border-radius: 5px;
 	padding: 5px 10px 5px 10px;
+	font-family: KaushanScript, cursive;
+}
+
+#refresh-page-button{
+	display: none;
+	margin: 20px auto;
 }
 
 p{
 	font-size: 18px;
+}
+
+.upload-video-wrapper{
+	/*display: none;*/
+	float: left;
+	width: 33%;
+	text-align: center; 	
 }
 
 .gif-image-wrapper{
@@ -76,13 +97,29 @@ p{
 .gif-img-div{
 	margin: 0 auto;
 	width: 200px;
-	height: 200px;
+	height: 150px;
 	background: gray;
 	border: 1px solid black;
 	border-radius: 5px;
 }
 
 .footer{
-	padding-top: 150px;
 	text-align: center;
+	padding-top: 150px;
+}
+
+.please-wait-wrapper{
+	display: none;
+	position: absolute;
+	top: 65%;
+	left: 35%;
+	margin: 0 auto;
+	width: 25%;
+	/*height: 100%;*/
+	background: #c4cdd3;
+	border-bottom: 1px solid gray;
+	text-align: center;
+	padding: 20px;
+	border-radius: 5px 5px 10px 10px;
+	border-bottom: 5px solid #888;
 }
