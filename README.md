@@ -1,5 +1,5 @@
 # letsgif
-A video to gif converter.
+A video to gif converter. Works in browser itself.
 
 ### Usage
 *Converts mp4/webm videos to animated gif image. You also can create gif image by capturing video from webcam.*
